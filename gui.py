@@ -1,5 +1,10 @@
 import tkinter as tk
 from tkinter import ttk
+import generate_Suduko as gs
+
+
+
+
 
 
 # Class for creating cells
@@ -16,8 +21,7 @@ def mk_board(containter, cell):
     frame.columnconfigure(2, weight=1)
     frame.grid(column=cell % 3, row=cell//3)
     for i in range(9):
-        field = ttk.Label(frame, background='#0c3800', text=i+1, width=1,padding=10, border=1,relief='sunken')
-
+        field = ttk.Label(frame, background='#0c3800', text=i+1, width=1, padding=10, border=1, relief='sunken')
         field.grid(column=i % 3, row=i//3)
 
 
@@ -31,6 +35,11 @@ root = tk.Tk()  # creates and application windon
 root.geometry('400x400')
 root.resizable(True, True)
 root.title('Sudoku')
+
+board_one = gs.Board()
+board_one.show()
+board_one.generate()
+board_one.show()
 
 
 mk_grid(root)
