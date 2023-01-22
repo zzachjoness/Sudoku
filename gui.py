@@ -30,19 +30,15 @@ def mk_grid(container):
     for i in range(9):
         mk_board(container, i)
 
-# root window
+#root window
 root = tk.Tk()  # creates and application windon
 root.geometry('400x400')
 root.resizable(True, True)
 root.title('Sudoku')
 
 board_one = gs.Board()
-board_one.show()
 board_one.generate()
-board_one.show()
 
-
-mk_grid(root)
 
 root.mainloop()  # keeps the window visible on the screen
 
