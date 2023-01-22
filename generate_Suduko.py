@@ -12,15 +12,13 @@ class Board():
     board_col = sub_block % 3
     if board_col == 0:
       return []
-    print(self.data)
     row_list = []
     sb_row = (row // 3) * 3
     for i in range(sub_block - board_col, sub_block):
-      print('i: ', i)
       if len(self.data) >= i:
         for j in range(sb_row, sb_row + 3):
-          if len(self.data[i]) >= j:
-            row_list.append(self.data[i][j])
+          row_list.append(self.data[i][j])
+    print('data check:', self.data)
     print('should be done, here is your row list: ', row_list)
     return row_list
   
