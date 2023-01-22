@@ -36,9 +36,8 @@ root.geometry('400x400')
 root.resizable(True, True)
 root.title('Sudoku')
 
-board_one = gs.Board()
-board_one.generate()
-
+#board_one = gs.Board()
+#board_one.generate()
 
 root.mainloop()  # keeps the window visible on the screen
 
