@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-import generate_Suduko as gs
+import generate_Sudoku as gs
 
 
 
