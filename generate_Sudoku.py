@@ -1,14 +1,12 @@
 import random
 
-def say_hello():
-  print("hi from generate")
-
 class Board():
   def __init__(self):
     self.data = []
-    self.msg = 'hi'
+    self.count = 0
   def reset(self):
     self.data = []
+    self.count += 1
 
   def get_row(self, sub_block,fc):
     board_col = sub_block % 3
@@ -47,6 +45,7 @@ class Board():
         fc = j
         row_list = self.get_row(sub_block, fc)
         col_list = self.get_col(sub_block, fc)
+        count = 0
         while len(self.data[i]) < j + 1 :
           dice = random.randrange(len(choices))
           fc = choices[dice]
@@ -55,14 +54,23 @@ class Board():
               self.data[i].append(fc)
               del choices[dice]
               last_len = len(choices)
-          print(last_len)
-        
-    print('done: ',self.data)
+          if len(choices) > 0 and count > len(choices)*10:
+            self.reset()
+            return False
+          count += 1
+    return True
+  
+  def iterate_gen(self):
+    full_board = False
+    while full_board == False:
+      full_board = self.generate()
 
   def show(self):
     print(self.msg,self.data)
 
 
 one = Board()
-one.generate()
+one.iterate_gen()
+print(one.data)
+print(one.count)
 
