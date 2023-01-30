@@ -8,10 +8,7 @@ class Cell():
         self.value = v
 
 # list for color matching numbers
-
 colors = ['white smoke', 'light coral', 'khaki', 'pink', 'peach puff', 'lemon chiffon', 'steel blue2', 'plum2', 'pale green3']
-
-
 
 # Function for creating a Frame of Cells
 def mk_board(containter, cell, data):
@@ -66,4 +63,3 @@ close_window.grid(row=0, column=2)
 
 root.mainloop()  # keeps the window visible on the screen
 
-# object for creating cells
