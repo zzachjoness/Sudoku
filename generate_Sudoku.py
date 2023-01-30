@@ -66,11 +66,13 @@ class Board():
       full_board = self.generate()
 
   def show(self):
-    print(self.msg,self.data)
+    print(self.data)
 
+'''
 
 one = Board()
 one.iterate_gen()
 print(one.data)
 print(one.count)
 
+'''
