@@ -7,16 +7,22 @@ class Cell():
     def __init__(self, v=None):
         self.value = v
 
+# list for color matching numbers
+
+colors = ['white smoke', 'light coral', 'khaki', 'pink', 'peach puff', 'lemon chiffon', 'steel blue2', 'plum2', 'pale green3']
+
+
 
 # Function for creating a Frame of Cells
 def mk_board(containter, cell, data):
-    frame = Frame(containter)
+    frame = Frame(containter, relief='solid',borderwidth=1, padx=5, pady=5)
     frame.columnconfigure(0, weight=1)
     frame.columnconfigure(1, weight=1)
     frame.columnconfigure(2, weight=1)
     frame.grid(column=cell % 3, row=cell//3)
     for i in range(9):
-        field = Label(frame, background='#0c3800', text=data[i], padx=10, pady=10, width=1,border=1, relief='sunken') #padding=10 removed
+        number = data[i]
+        field = Label(frame, background=colors[number-1], text=number, padx=20, pady=20, width=1,border=1, relief='sunken') #padding=10 removed
         field.grid(column=i % 3, row=i//3)
 
 # Function for creating grid of Frames
@@ -29,13 +35,13 @@ def mk_grid(container):
 #root window
 root = Tk()  # creates and application window
 root.title('Sudoku')
-root.geometry('{}x{}'.format(460,600))
+root.geometry('{}x{}'.format(600,600))
 #root.resizable(True, True)
 
 # create all of the main containers
-top_frame = Frame(root, bg='cyan', width=450, height=50, pady=3)
-center_frame = Frame(root, bg='lavender', width=450, height=300, pady=3)
-btm_frame = Frame(root, bg='gray2', width=450, height=50, pady=3)
+top_frame = Frame(root, bg='cyan', width=550, height=50, pady=3)
+center_frame = Frame(root, bg='lavender', width=550, height=300, pady=3)
+btm_frame = Frame(root, bg='gray2', width=550, height=50, pady=3)
 
 # layout all of the main containers
 root.grid_rowconfigure(1, weight=1)
