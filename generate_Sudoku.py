@@ -68,11 +68,3 @@ class Board():
   def show(self):
     print(self.data)
 
-'''
-
-one = Board()
-one.iterate_gen()
-print(one.data)
-print(one.count)
-
-'''
