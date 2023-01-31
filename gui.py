@@ -12,22 +12,24 @@ colors = ['white smoke', 'light coral', 'khaki', 'pink', 'peach puff', 'lemon ch
 
 # Function for creating a Frame of Cells
 def mk_board(containter, cell, data):
-    frame = Frame(containter, relief='solid',borderwidth=1, padx=5, pady=5)
-    frame.columnconfigure(0, weight=1)
-    frame.columnconfigure(1, weight=1)
-    frame.columnconfigure(2, weight=1)
+    frame = Frame(containter,width=450, height=450)
+    frame.columnconfigure(0,)
+    frame.columnconfigure(1, minsize=30)
+    frame.columnconfigure(2, minsize=30)
     frame.grid(column=cell % 3, row=cell//3)
     for i in range(9):
         number = data[i]
-        field = Label(frame, background=colors[number-1], text=number, padx=20, pady=20, width=1,border=1, relief='sunken') #padding=10 removed
+        field = Label(frame, background=colors[number-1], text=number, relief='ridge', borderwidth=1) #padding=10 removed
         field.grid(column=i % 3, row=i//3)
 
 # Function for creating grid of Frames
 def mk_grid(container):
     board = gs.Board()
     board.iterate_gen()
+    board_frame = Frame(container, bg='white', width=450, height=450, borderwidth=1, relief='flat')
+    board_frame.grid(row=0, sticky='ew')
     for i in range(9):
-        mk_board(container, i, board.data[i])
+        mk_board(board_frame, i, board.data[i])
 
 #root window
 root = Tk()  # creates and application window
@@ -46,7 +48,7 @@ root.grid_columnconfigure(0, weight=1)
 
 top_frame.grid(row=0, sticky='ew')
 center_frame.grid(row=1, sticky='nsew')
-btm_frame.grid(row=2,stick='ew') #test row 2 vs row 3 vs row 4
+btm_frame.grid(row=2,stick='ew')
 
 # create widgets for the top frame
 new_board_button = Button(top_frame, bg='red', text="New Board", command=lambda: mk_grid(center_frame))
