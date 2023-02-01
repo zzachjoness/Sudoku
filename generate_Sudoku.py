@@ -1,4 +1,6 @@
 import random
+import unique_boards as ub
+
 
 class Board():
   def __init__(self):
@@ -64,7 +66,13 @@ class Board():
     full_board = False
     while full_board == False:
       full_board = self.generate()
+    self.add_data()
+    print(ub.data)
 
   def show(self):
     print(self.data)
+  
+  def add_data(self):
+    if self.data not in ub.data:
+      ub.data.append(self.data)
 
