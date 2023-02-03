@@ -66,4 +66,3 @@ close_window = Button(btm_frame, text="Close Window", command=lambda: root.quit(
 close_window.grid(row=0, column=2)
 
 root.mainloop()  # keeps the window visible on the screen
-

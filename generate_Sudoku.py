@@ -1,6 +1,5 @@
 import random
 import json
-from io import StringIO
 
 
 class Board():
@@ -69,17 +68,13 @@ class Board():
       full_board = self.generate()
     with open('unique_boards.json', encoding='utf-8') as f:
       read_data = f.read()
-      unique_boards = json.loads(read_data)
-      print(type(unique_boards)) #returning type string, needs to be a list
+    unique_boards = json.loads(read_data)
+    print('unique boards: ', unique_boards)
+    print('should be list ', type(unique_boards))
     if self.data not in unique_boards:
       unique_boards.append(self.data)
-      print(unique_boards)
-      print(type(unique_boards))
-      ub_json = json.dumps(unique_boards)
-      print(ub_json)
-      print(type(ub_json))
       with open('unique_boards.json', 'w', encoding='utf-8') as f:
-        json.dump(ub_json, f)
+        json.dump(unique_boards, f)
     
 
 
