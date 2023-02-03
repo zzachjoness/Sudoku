@@ -2,6 +2,7 @@ import random
 import json
 
 
+
 class Board():
   def __init__(self):
     self.data = []
@@ -36,7 +37,6 @@ class Board():
             col_list.append(self.data[i][j])
     return col_list
 
-  # next to do, if failure, start over
   def generate(self):
     for i in range(9):
       self.data.append([])
@@ -69,30 +69,12 @@ class Board():
     with open('unique_boards.json', encoding='utf-8') as f:
       read_data = f.read()
     unique_boards = json.loads(read_data)
-    print('unique boards: ', unique_boards)
-    print('should be list ', type(unique_boards))
     if self.data not in unique_boards:
       unique_boards.append(self.data)
+      print(f'there are {len(unique_boards)} ubs')
       with open('unique_boards.json', 'w', encoding='utf-8') as f:
         json.dump(unique_boards, f)
-    
-
-
-    '''
-    unique_boards = open("unique_boards.JSON", 'r+')
-    with unique_boards as ub:
-      read_data = ub.read()
-      print(read_data.data)
-    print(unique_boards.closed)
-    '''
-    
-
 
   def show(self):
     print(self.data)
   
-  '''def add_data(self):
-    if self.data not in ub.data:
-      ub.data.append(self.data)'''
-  
-
