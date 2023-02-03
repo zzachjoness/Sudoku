@@ -11,18 +11,18 @@ class Cell():
 colors = ['white smoke', 'light coral', 'khaki', 'pink', 'peach puff', 'lemon chiffon', 'steel blue2', 'plum2', 'pale green3']
 
 # Function for creating a Frame of Cells
-def mk_board(containter, cell, data):
-    frame = Frame(containter, borderwidth=.5, relief='solid')
-    frame.columnconfigure(0, weight=1, minsize=50)
-    frame.columnconfigure(1, weight=2, minsize=50)
-    frame.columnconfigure(2, weight=1, minsize=50)
-    frame.rowconfigure(0, weight=1, minsize=50)
-    frame.rowconfigure(1, weight=1, minsize=50)
-    frame.rowconfigure(2, weight=1, minsize=50)
-    frame.grid(column=cell % 3, row=cell//3)
+def mk_board(container, cell, data):
+    brd_frame = Frame(container, borderwidth=.5, relief='solid')
+    brd_frame.columnconfigure(0, weight=1, minsize=50)
+    brd_frame.columnconfigure(1, weight=2, minsize=50)
+    brd_frame.columnconfigure(2, weight=1, minsize=50)
+    brd_frame.rowconfigure(0, weight=1, minsize=50)
+    brd_frame.rowconfigure(1, weight=1, minsize=50)
+    brd_frame.rowconfigure(2, weight=1, minsize=50)
+    brd_frame.grid(column=cell % 3, row=cell//3)
     for i in range(9):
         number = data[i]
-        field = Label(frame, text=number, borderwidth=.5, relief='raised') #, background=colors[number-1]) #padding=10 removed
+        field = Label(brd_frame, text=number, borderwidth=.5, relief='raised') #, background=colors[number-1]) #padding=10 removed
         field.grid(column=i % 3, row=i//3, sticky='nsew')
 
 # Function for creating grid of Frames
@@ -53,11 +53,23 @@ top_frame.grid(row=0, sticky='ew')
 center_frame.grid(row=1, sticky='ns')
 btm_frame.grid(row=2,stick='ew')
 
+center_frame.columnconfigure(0, weight = 2)
+center_frame.columnconfigure(1, weight=1)
+
+# create subframes for center frame
+options_frame = Frame(center_frame, borderwidth=.5, relief=SOLID, background='light coral')
+options_frame.grid(column=2, sticky='nsew')
+
 # create widgets for the top frame
 new_board_button = Button(top_frame, bg='red', text="New Board", height=2, width=10, command=lambda: mk_grid(center_frame))
 
 # layout the widgets for the top frame
 new_board_button.grid(row=0) #test with colspan
+
+# create widgets for the center frame
+mk_grid(center_frame)
+options_title = Label(options_frame, text='OPTIONS')
+options_title.grid(sticky='nsew')
 
 # create widgets for the btm frame
 close_window = Button(btm_frame, text="Close Window", command=lambda: root.quit())
