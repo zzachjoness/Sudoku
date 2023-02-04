@@ -22,7 +22,7 @@ def mk_board(container, cell, data):
     brd_frame.grid(column=cell % 3, row=cell//3, sticky='nsew')
     for i in range(9):
         number = data[i]
-        field = Label(brd_frame, text=number, borderwidth=.5, relief='raised') #, background=colors[number-1]) #padding=10 removed
+        field = Label(brd_frame, text=number, borderwidth=.5, relief='raised', background=colors[number-1]) #padding=10 removed
         field.grid(column=i % 3, row=i//3, sticky='nsew')
 
 # Function for creating grid of Frames
@@ -58,6 +58,10 @@ btm_frame.grid(row=2,stick='ew')
 options_frame = Frame(center_frame, borderwidth=.5, relief=SOLID, background='light coral')
 options_frame.grid(column=1, sticky='nsew')
 
+# create subframes for options frame
+number_select_frame = Frame(options_frame)
+number_select_frame.grid(row=2, column=0, columnspan=3, sticky='nsew')
+
 # create widgets for the top frame
 new_board_button = Button(top_frame, bg='red', text="New Board", height=2, width=10, command=lambda: mk_grid(center_frame))
 
@@ -72,6 +76,15 @@ options_title = Label(options_frame, text='OPTIONS').grid(row=0, columnspan=3, s
 undo_button = Button(options_frame, text='undo').grid(row=1, column=0, sticky='nsew')
 erase_button = Button(options_frame, text='erase').grid(row=1, column=1, sticky='nsew')
 notes_button = Button(options_frame, text='notes').grid(row=1, column=2, sticky='nsew')
+one = Button(number_select_frame, text=1).grid(row=0, column=0, sticky='nsew')
+two = Button(number_select_frame, text=2).grid(row=0, column=1, sticky='nsew')
+three = Button(number_select_frame, text=3).grid(row=0, column=2, sticky='nsew')
+four = Button(number_select_frame, text=4).grid(row=1, column=0, sticky='nsew')
+five = Button(number_select_frame, text=5).grid(row=1, column=1, sticky='nsew')
+six = Button(number_select_frame, text=6).grid(row=1, column=2, sticky='nsew')
+seven = Button(number_select_frame, text=7).grid(row=2, column=0, sticky='nsew')
+eight = Button(number_select_frame, text=8).grid(row=2, column=1, sticky='nsew')
+nine = Button(number_select_frame, text=9).grid(row=2, column=2, sticky='nsew')
 
 
 
