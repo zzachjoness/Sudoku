@@ -19,7 +19,7 @@ def mk_board(container, cell, data):
     brd_frame.rowconfigure(0, weight=1, minsize=50)
     brd_frame.rowconfigure(1, weight=1, minsize=50)
     brd_frame.rowconfigure(2, weight=1, minsize=50)
-    brd_frame.grid(column=cell % 3, row=cell//3)
+    brd_frame.grid(column=cell % 3, row=cell//3, sticky='nsew')
     for i in range(9):
         number = data[i]
         field = Label(brd_frame, text=number, borderwidth=.5, relief='raised') #, background=colors[number-1]) #padding=10 removed
@@ -50,15 +50,13 @@ root.grid_rowconfigure(1, weight=1)
 root.grid_columnconfigure(0, weight=1)
 
 top_frame.grid(row=0, sticky='ew')
-center_frame.grid(row=1, sticky='ns')
+center_frame.grid(row=1, sticky='nsew')
 btm_frame.grid(row=2,stick='ew')
 
-center_frame.columnconfigure(0, weight = 2)
-center_frame.columnconfigure(1, weight=1)
 
 # create subframes for center frame
 options_frame = Frame(center_frame, borderwidth=.5, relief=SOLID, background='light coral')
-options_frame.grid(column=2, sticky='nsew')
+options_frame.grid(column=1, sticky='nsew')
 
 # create widgets for the top frame
 new_board_button = Button(top_frame, bg='red', text="New Board", height=2, width=10, command=lambda: mk_grid(center_frame))
@@ -68,8 +66,14 @@ new_board_button.grid(row=0) #test with colspan
 
 # create widgets for the center frame
 mk_grid(center_frame)
-options_title = Label(options_frame, text='OPTIONS')
-options_title.grid(sticky='nsew')
+
+# create widgets for the options frame
+options_title = Label(options_frame, text='OPTIONS').grid(row=0, columnspan=3, sticky='nsew')
+undo_button = Button(options_frame, text='undo').grid(row=1, column=0, sticky='nsew')
+erase_button = Button(options_frame, text='erase').grid(row=1, column=1, sticky='nsew')
+notes_button = Button(options_frame, text='notes').grid(row=1, column=2, sticky='nsew')
+
+
 
 # create widgets for the btm frame
 close_window = Button(btm_frame, text="Close Window", command=lambda: root.quit())
