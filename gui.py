@@ -55,12 +55,14 @@ btm_frame.grid(row=2,stick='ew')
 
 
 # create subframes for center frame
-options_frame = Frame(center_frame, borderwidth=.5, relief=SOLID, background='light coral')
+options_frame = Frame(center_frame, borderwidth=.5, relief=SOLID)
 options_frame.grid(column=1, sticky='nsew')
 
 # create subframes for options frame
+button_frame = Frame(options_frame)
+button_frame.grid(row=1, column=0, columnspan=3, padx=10, pady=10, sticky='ns')
 number_select_frame = Frame(options_frame)
-number_select_frame.grid(row=2, column=0, columnspan=3, sticky='nsew')
+number_select_frame.grid(row=2, column=0, columnspan=3, padx=10, pady=10, sticky='nsew')
 
 # create widgets for the top frame
 new_board_button = Button(top_frame, bg='red', text="New Board", height=2, width=10, command=lambda: mk_grid(center_frame))
@@ -72,19 +74,19 @@ new_board_button.grid(row=0) #test with colspan
 mk_grid(center_frame)
 
 # create widgets for the options frame
-options_title = Label(options_frame, text='OPTIONS').grid(row=0, columnspan=3, sticky='nsew')
-undo_button = Button(options_frame, text='undo').grid(row=1, column=0, sticky='nsew')
-erase_button = Button(options_frame, text='erase').grid(row=1, column=1, sticky='nsew')
-notes_button = Button(options_frame, text='notes').grid(row=1, column=2, sticky='nsew')
-one = Button(number_select_frame, text=1).grid(row=0, column=0, sticky='nsew')
-two = Button(number_select_frame, text=2).grid(row=0, column=1, sticky='nsew')
-three = Button(number_select_frame, text=3).grid(row=0, column=2, sticky='nsew')
-four = Button(number_select_frame, text=4).grid(row=1, column=0, sticky='nsew')
-five = Button(number_select_frame, text=5).grid(row=1, column=1, sticky='nsew')
-six = Button(number_select_frame, text=6).grid(row=1, column=2, sticky='nsew')
-seven = Button(number_select_frame, text=7).grid(row=2, column=0, sticky='nsew')
-eight = Button(number_select_frame, text=8).grid(row=2, column=1, sticky='nsew')
-nine = Button(number_select_frame, text=9).grid(row=2, column=2, sticky='nsew')
+options_title = Label(options_frame, text='OPTIONS').grid(row=0, columnspan=3, sticky='ns')
+undo_button = Button(button_frame, width=5, text='undo').grid(row=0, column=0, sticky='ns')
+erase_button = Button(button_frame,width=5,  text='erase').grid(row=0, column=1, sticky='ns')
+notes_button = Button(button_frame,width=5,  text='notes').grid(row=0, column=2, sticky='ns')
+one = Button(number_select_frame, text=1, height= 5, width=5).grid(row=0, column=0, sticky='nsew')
+two = Button(number_select_frame, text=2, height= 5, width=5).grid(row=0, column=1, sticky='nsew')
+three = Button(number_select_frame, text=3, height= 5, width=5).grid(row=0, column=2, sticky='nsew')
+four = Button(number_select_frame, text=4, height= 5, width=5).grid(row=1, column=0, sticky='nsew')
+five = Button(number_select_frame, text=5, height= 5, width=5).grid(row=1, column=1, sticky='nsew')
+six = Button(number_select_frame, text=6, height= 5, width=5).grid(row=1, column=2, sticky='nsew')
+seven = Button(number_select_frame, text=7, height= 5, width=5).grid(row=2, column=0, sticky='nsew')
+eight = Button(number_select_frame, text=8, height= 5, width=5).grid(row=2, column=1, sticky='nsew')
+nine = Button(number_select_frame, text=9, height= 5, width=5).grid(row=2, column=2, sticky='nsew')
 
 
 
