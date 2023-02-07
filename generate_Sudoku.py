@@ -1,8 +1,6 @@
 import random
 import json
 
-
-
 class Board():
   def __init__(self):
     self.data = []
@@ -66,13 +64,13 @@ class Board():
     full_board = False
     while full_board == False:
       full_board = self.generate()
-    with open('unique_boards.json', encoding='utf-8') as f:
+    with open('unique_Boards.json', encoding='utf-8') as f:
       read_data = f.read()
     unique_boards = json.loads(read_data)
     if self.data not in unique_boards:
       unique_boards.append(self.data)
       print(f'there are {len(unique_boards)} ubs')
-      with open('unique_boards.json', 'w', encoding='utf-8') as f:
+      with open('unique_Boards.json', 'w', encoding='utf-8') as f:
         json.dump(unique_boards, f)
 
   def show(self):
