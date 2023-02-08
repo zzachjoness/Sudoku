@@ -22,7 +22,7 @@ def mk_board(container, cell, data):
     brd_frame.grid(column=cell % 3, row=cell//3, sticky='nsew')
     for i in range(9):
         number = data[i]
-        field = Label(brd_frame, text=number, borderwidth=.5, relief='raised', background=colors[number-1]) #padding=10 removed
+        field = Label(brd_frame, text=number, borderwidth=.5, relief='raised')#, background=colors[number-1]) #padding=10 removed
         field.grid(column=i % 3, row=i//3, sticky='nsew')
 
 # Function for creating grid of Frames
