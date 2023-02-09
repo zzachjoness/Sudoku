@@ -43,5 +43,13 @@ def create_Puzzle():
     # expert leave 23-25 cells -> remove 56 cells
     puzzle = Puzzle(board)
     puzzle.remove_spaces()
+    add_puzzle_obj = {'solution': puzzle.solution, 'puzzle': puzzle.puzzle}
+    with open('unique_Puzzles.JSON', encoding='utf-8') as f:
+        unique_puzzles = f.read()
+    unique_puzzles_list = json.loads(unique_puzzles)
+    unique_puzzles_list.append(add_puzzle_obj)
+    with open('unique_Puzzles.JSON', 'w', encoding='utf-8') as f:
+        json.dump(unique_puzzles_list, f)
+    
 
 create_Puzzle()
