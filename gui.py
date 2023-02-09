@@ -1,4 +1,6 @@
 from tkinter import *
+import json
+import random
 import generate_Sudoku as gs
 
 
@@ -27,12 +29,21 @@ def mk_board(container, cell, data):
 
 # Function for creating grid of Frames
 def mk_grid(container):
-    board = gs.Board()
-    board.iterate_gen()
+    # replace board resolution with unique puzzles
+    with open('unique_Puzzles.JSON', encoding='utf-8') as f:
+        unique_puzzles = f.read()
+    unique_puzzles_list = json.loads(unique_puzzles)
+    print(type(unique_puzzles_list))
+    rn = random.randrange(len(unique_puzzles_list)-1)
+    random_puzzle = unique_puzzles_list[rn]
+    print(random_puzzle)
+    print(random_puzzle)
+    '''board = gs.Board()
+    board.iterate_gen()'''
     board_frame = Frame(container, bg='white', borderwidth=1, relief='solid')
     board_frame.grid(row=0)
     for i in range(9):
-        mk_board(board_frame, i, board.data[i])
+        mk_board(board_frame, i, random_puzzle['puzzle'][i])
 
 #root window
 root = Tk()  # creates and application window
