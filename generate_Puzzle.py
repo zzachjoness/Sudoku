@@ -19,7 +19,6 @@ class Puzzle():
     def save_puzzle(self):
         with open('unique_Puzzles.JSON', encoding='utf-8') as f:
             read_data = f.read()
-        print(f.read)
 
     def remove_spaces(self):
         for i in range(56):

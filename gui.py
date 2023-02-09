@@ -29,17 +29,11 @@ def mk_board(container, cell, data):
 
 # Function for creating grid of Frames
 def mk_grid(container):
-    # replace board resolution with unique puzzles
     with open('unique_Puzzles.JSON', encoding='utf-8') as f:
         unique_puzzles = f.read()
     unique_puzzles_list = json.loads(unique_puzzles)
-    print(type(unique_puzzles_list))
     rn = random.randrange(len(unique_puzzles_list)-1)
     random_puzzle = unique_puzzles_list[rn]
-    print(random_puzzle)
-    print(random_puzzle)
-    '''board = gs.Board()
-    board.iterate_gen()'''
     board_frame = Frame(container, bg='white', borderwidth=1, relief='solid')
     board_frame.grid(row=0)
     for i in range(9):
