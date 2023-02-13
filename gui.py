@@ -16,7 +16,7 @@ colors = ['white smoke', 'light coral', 'khaki', 'pink', 'peach puff', 'lemon ch
 def mk_board(container, cell, data):
     brd_frame = Frame(container, borderwidth=.5, relief='solid')
     brd_frame.columnconfigure(0, weight=1, minsize=50)
-    brd_frame.columnconfigure(1, weight=2, minsize=50)
+    brd_frame.columnconfigure(1, weight=1, minsize=50)
     brd_frame.columnconfigure(2, weight=1, minsize=50)
     brd_frame.rowconfigure(0, weight=1, minsize=50)
     brd_frame.rowconfigure(1, weight=1, minsize=50)
@@ -24,7 +24,14 @@ def mk_board(container, cell, data):
     brd_frame.grid(column=cell % 3, row=cell//3, sticky='nsew')
     for i in range(9):
         number = data[i]
-        field = Label(brd_frame, text=number, borderwidth=.5, relief='raised')#, background=colors[number-1]) #padding=10 removed
+        user_guess = int
+        #field as label
+        #field = Label(brd_frame, text=number, borderwidth=.5, relief='raised')#, background=colors[number-1]) #padding=10 removed
+        #field as button
+        #field = Button(brd_frame, text=number, highlightthickness=0)
+        #field as entry
+        field = Entry(brd_frame, textvariable=user_guess, justify=CENTER, bd=0, width=5)
+        field.insert(END, number)
         field.grid(column=i % 3, row=i//3, sticky='nsew')
 
 # Function for creating grid of Frames
@@ -42,12 +49,12 @@ def mk_grid(container):
 #root window
 root = Tk()  # creates and application window
 root.title('Sudoku')
-root.geometry('{}x{}'.format(800,550))
+root.geometry('{}x{}'.format(800,600))
 #root.resizable(True, True)
 
 # create all of the main containers
 top_frame = Frame(root, bg='cyan', width=550, height=150, pady=3)
-center_frame = Frame(root, bg='lavender', width=550, height=300, pady=3)
+center_frame = Frame(root, bg='lavender', width=550, height=200, pady=3)
 btm_frame = Frame(root, bg='gray2', width=550, height=50, pady=3)
 
 # layout all of the main containers
