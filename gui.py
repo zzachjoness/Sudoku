@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import ttk
 import json
 import random
 import generate_Sudoku as gs
@@ -30,8 +31,10 @@ def mk_board(container, cell, data):
         #field as button
         #field = Button(brd_frame, text=number, highlightthickness=0)
         #field as entry
-        field = Entry(brd_frame, textvariable=user_guess, justify=CENTER, bd=0, width=5)
-        field.insert(END, number)
+        field = Entry(brd_frame, textvariable=user_guess, justify=CENTER, bd=0, width=5, background='white smoke')
+        if number != "":
+            field.insert(END, number)
+            field.configure(state='disabled', disabledbackground='white smoke', disabledforeground='black')
         field.grid(column=i % 3, row=i//3, sticky='nsew')
 
 # Function for creating grid of Frames
