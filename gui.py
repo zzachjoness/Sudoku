@@ -26,15 +26,7 @@ def mk_board(container, cell, data):
     for i in range(9):
         number = data[i]
         user_guess = int
-        #field as label
-        #field = Label(brd_frame, text=number, borderwidth=.5, relief='raised')#, background=colors[number-1]) #padding=10 removed
-        #field as button
-        #field = Button(brd_frame, text=number, highlightthickness=0)
-        #field as entry
-        field = Entry(brd_frame, textvariable=user_guess, justify=CENTER, bd=0, width=5, background='white smoke')
-        if number != "":
-            field.insert(END, number)
-            field.configure(state='disabled', disabledbackground='white smoke', disabledforeground='black')
+        field = Button(brd_frame, highlightthickness=0, border=0, borderwidth=0,height=3,width=3, bg='white smoke', text=number, command=lambda f=i: print(cell, f, i))
         field.grid(column=i % 3, row=i//3, sticky='nsew')
 
 # Function for creating grid of Frames
@@ -93,7 +85,7 @@ options_title = Label(options_frame, text='OPTIONS').grid(row=0, columnspan=3, s
 undo_button = Button(button_frame, width=5, text='undo').grid(row=0, column=0, sticky='ns')
 erase_button = Button(button_frame,width=5,  text='erase').grid(row=0, column=1, sticky='ns')
 notes_button = Button(button_frame,width=5,  text='notes').grid(row=0, column=2, sticky='ns')
-one = Button(number_select_frame, text=1, height= 5, width=5).grid(row=0, column=0, sticky='nsew')
+one = Button(number_select_frame, text=1, height= 5, width=5, command=lambda: print('hi')).grid(row=0, column=0, sticky='nsew')
 two = Button(number_select_frame, text=2, height= 5, width=5).grid(row=0, column=1, sticky='nsew')
 three = Button(number_select_frame, text=3, height= 5, width=5).grid(row=0, column=2, sticky='nsew')
 four = Button(number_select_frame, text=4, height= 5, width=5).grid(row=1, column=0, sticky='nsew')
@@ -102,8 +94,6 @@ six = Button(number_select_frame, text=6, height= 5, width=5).grid(row=1, column
 seven = Button(number_select_frame, text=7, height= 5, width=5).grid(row=2, column=0, sticky='nsew')
 eight = Button(number_select_frame, text=8, height= 5, width=5).grid(row=2, column=1, sticky='nsew')
 nine = Button(number_select_frame, text=9, height= 5, width=5).grid(row=2, column=2, sticky='nsew')
-
-
 
 # create widgets for the btm frame
 close_window = Button(btm_frame, text="Close Window", command=lambda: root.quit())
