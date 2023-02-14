@@ -26,7 +26,7 @@ def mk_board(container, cell, data):
     for i in range(9):
         number = data[i]
         user_guess = int
-        field = Button(brd_frame, highlightthickness=0, border=0, borderwidth=0,height=3,width=3, bg='white smoke', text=number, command=lambda f=i: print(cell, f, i))
+        field = Button(brd_frame, highlightthickness=0, border=0, borderwidth=0,height=3,width=3, bg='white smoke', text=number, command=lambda f=i, n=number: print(cell, f, n))
         field.grid(column=i % 3, row=i//3, sticky='nsew')
 
 # Function for creating grid of Frames
