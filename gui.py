@@ -16,10 +16,18 @@ colors = ['white smoke', 'light coral', 'khaki', 'pink', 'peach puff', 'lemon ch
 # list of board cells buttons
 board_cells = []
 # Function for updating board buttons
-def update_cell(cell, n, f):
-    print(f'cell{cell}, i{n}, f{f}')
-    cell = board_cells[cell*9 +n]
-    cell.config(text='hi') # need to take input from options section
+# NOT SURE IF THIS IS REQUIRED/USABLE
+'''def update_cell(cell, i, n):
+    print(f'cell{cell}, i{i}, num{n}')
+    cell_button = board_cells[cell*9 +i]
+    cell_button.config(text=n+1) # need to take input from options section
+    board_cells[cell*9+i] = cell_button'''
+# function for coloring active button cell
+def set_active_cell(board, cell):
+    print(board,cell)
+    selection = board_cells[board*9 + cell]
+    selection.config(bg='blue')
+
 
 
 # Function for creating a Frame of Cells
@@ -35,7 +43,7 @@ def mk_board(container, cell, data):
     for i in range(9):
         number = data[i]
         user_guess = int
-        field = Button(brd_frame, highlightthickness=0, border=0, borderwidth=0,height=3,width=3, bg='white smoke', text=number, command=lambda f=i, n=number: update_cell(cell, f, n))
+        field = Button(brd_frame, highlightthickness=0, border=0, borderwidth=0,height=3,width=3, bg='white smoke', text=number, command= lambda i=i: set_active_cell(cell, i, ))
         field.grid(column=i % 3, row=i//3, sticky='nsew')
         board_cells.append(field)
 
