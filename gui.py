@@ -15,6 +15,7 @@ colors = ['white smoke', 'light coral', 'khaki', 'pink', 'peach puff', 'lemon ch
 
 # list of board cells buttons
 board_cells = []
+
 # Function for updating board buttons
 # NOT SURE IF THIS IS REQUIRED/USABLE
 '''def update_cell(cell, i, n):
@@ -23,11 +24,22 @@ board_cells = []
     cell_button.config(text=n+1) # need to take input from options section
     board_cells[cell*9+i] = cell_button'''
 # function for coloring active button cell
-def set_active_cell(board, cell):
+def set_active_cell(button, board, cell):
     print(board,cell)
-    selection = board_cells[board*9 + cell]
-    selection.config(bg='blue')
+    global selected_button
+    if selected_button is not None:
+        selected_button.config(bg='yellow')
+    button.config(bg='light blue')
+    selected_button = button
 
+
+### CHANGE SELECTED BUTTON
+def change_selected_button(button):
+    global selected_button
+    if selected_button is not None:
+        selected_button.config(bg='white')
+    button.config(highlightbackground='light blue')
+    selected_button = button
 
 
 # Function for creating a Frame of Cells
@@ -43,8 +55,10 @@ def mk_board(container, cell, data):
     for i in range(9):
         number = data[i]
         user_guess = int
-        field = Button(brd_frame, highlightthickness=0, border=0, borderwidth=0,height=3,width=3, bg='white smoke', text=number, command= lambda i=i: set_active_cell(cell, i, ))
+        #### FIELD WILL NEED TO BE A LABEL OR A CUSTOM BUTTON CLASS ####
+        field = Button(brd_frame, highlightthickness=0, border=0, borderwidth=0,height=3,width=3, highlightbackground='white smoke', text=number)
         field.grid(column=i % 3, row=i//3, sticky='nsew')
+        field.config(command=lambda button=field, i=i: set_active_cell(button, cell, i ))
         board_cells.append(field)
 
 # Function for creating grid of Frames
@@ -64,7 +78,8 @@ root = Tk()  # creates and application window
 root.title('Sudoku')
 root.geometry('{}x{}'.format(800,600))
 #root.resizable(True, True)
-
+# set selected button to None
+selected_button = None
 # create all of the main containers
 top_frame = Frame(root, bg='cyan', width=550, height=150, pady=3)
 center_frame = Frame(root, bg='lavender', width=550, height=200, pady=3)
@@ -103,8 +118,12 @@ options_title = Label(options_frame, text='OPTIONS').grid(row=0, columnspan=3, s
 undo_button = Button(button_frame, width=5, text='undo').grid(row=0, column=0, sticky='ns')
 erase_button = Button(button_frame,width=5,  text='erase').grid(row=0, column=1, sticky='ns')
 notes_button = Button(button_frame,width=5,  text='notes').grid(row=0, column=2, sticky='ns')
-one = Button(number_select_frame, text=1, height= 5, width=5, command=lambda: print('hi')).grid(row=0, column=0, sticky='nsew')
-two = Button(number_select_frame, text=2, height= 5, width=5).grid(row=0, column=1, sticky='nsew')
+one = Button(number_select_frame, text=1, height= 5, width=5)
+one.grid(row=0, column=0, sticky='nsew')
+one.config(command= lambda button=one: change_selected_button(button))
+two = Button(number_select_frame, text=2, height= 5, width=5)
+two.grid(row=0, column=1, sticky='nsew')
+two.config(command= lambda button=two: change_selected_button(button))
 three = Button(number_select_frame, text=3, height= 5, width=5).grid(row=0, column=2, sticky='nsew')
 four = Button(number_select_frame, text=4, height= 5, width=5).grid(row=1, column=0, sticky='nsew')
 five = Button(number_select_frame, text=5, height= 5, width=5).grid(row=1, column=1, sticky='nsew')
